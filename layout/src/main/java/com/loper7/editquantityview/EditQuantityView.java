@@ -2,6 +2,7 @@ package com.loper7.editquantityview;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Service;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -93,6 +94,7 @@ public class EditQuantityView extends LinearLayout {
     //最小值
     private int minQuantity = 0;
 
+    private OnQuantityChangedListener onQuantityChangedListener;
 
     public EditQuantityView(Context context) {
         super(context);
@@ -249,6 +251,8 @@ public class EditQuantityView extends LinearLayout {
                         editQuantity.requestFocus();
                     }
                     quantity = Integer.parseInt(editQuantity.getText().toString());
+                    if (onQuantityChangedListener != null)
+                        onQuantityChangedListener.onQuantityChanged(quantity);
                 } else {
                     quantity = minQuantity;
                     if (quantity > 0) {
@@ -345,6 +349,40 @@ public class EditQuantityView extends LinearLayout {
     }
 
     /**
+     * 设置当前数量
+     *
+     * @param quantity
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        if (editQuantity == null)
+            return;
+        editQuantity.setText(String.valueOf(quantity));
+    }
+
+    /**
+     * 设置最大值
+     *
+     * @param maxQuantity
+     */
+    public void setMax(int maxQuantity) {
+        this.maxQuantity = maxQuantity;
+        if (quantity > maxQuantity)
+            setQuantity(maxQuantity);
+    }
+
+    /**
+     * 设置最小值
+     *
+     * @param minQuantity
+     */
+    public void setMin(int minQuantity) {
+        this.minQuantity = minQuantity;
+        if (quantity < minQuantity)
+            setQuantity(minQuantity);
+    }
+
+    /**
      * 增加数量
      */
     private void addQuantity() {
@@ -352,6 +390,7 @@ public class EditQuantityView extends LinearLayout {
             return;
         quantity++;
         editQuantity.setText(String.valueOf(quantity));
+
     }
 
     /**
@@ -395,6 +434,7 @@ public class EditQuantityView extends LinearLayout {
             InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+        editQuantity.clearFocus();
     }
 
     /**
@@ -409,4 +449,11 @@ public class EditQuantityView extends LinearLayout {
     }
 
 
+    public interface OnQuantityChangedListener {
+        void onQuantityChanged(int quantity);
+    }
+
+    public void setOnQuantityChangedListener(OnQuantityChangedListener onQuantityChangedListener) {
+        this.onQuantityChangedListener = onQuantityChangedListener;
+    }
 }
