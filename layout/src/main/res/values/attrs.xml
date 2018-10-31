@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EditQuantityView">
+        <attr name="eButtonPadding" format="dimension" />
+        <attr name="eButtonTextSize" format="dimension" />
+        <attr name="eEditWidth" format="dimension" />
+        <attr name="eEditTextColor" format="color" />
+        <attr name="eCanInput" format="boolean" />
+        <attr name="eEditTextSize" format="dimension" />
+        <attr name="eSubtractTextColor" format="color" />
+        <attr name="eSubtractText" format="string" />
+        <attr name="eSubtractImageRes" format="reference" />
+        <attr name="eSubtractBackgroundRes" format="reference" />
+        <attr name="eSubtractCanHide" format="boolean" />
+        <attr name="eAddTextColor" format="color" />
+        <attr name="eAddText" format="string" />
+        <attr name="eAddImageRes" format="reference" />
+        <attr name="eAddBackgroundRes" format="reference" />
+        <attr name="eEditBackgroundRes" format="reference" />
+        <attr name="eQuantity" format="integer" />
+        <attr name="eMaxQuantity" format="integer|enum">
+            <enum name="INFINITY" value="-1" />
+        </attr>
+        <attr name="eMinQuantity" format="integer" />
+
+    </declare-styleable>
+
+</resources>
