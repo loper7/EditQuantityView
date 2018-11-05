@@ -225,7 +225,7 @@ public class EditQuantityView extends LinearLayout {
         editQuantity.setText(quantity > 0 ? quantity + "" : (subtractCanHide ? "" : "0"));
         editQuantity.setBackground(editBackgroundRes);
         editQuantity.setPadding(0, 0, 0, 0);
-        editQuantity.setCursorVisible(false);
+//        editQuantity.setCursorVisible(false);
         editQuantity.setLayoutParams(editParams);
         editQuantity.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) editTextSize);
         if (editTextColor != 0)
