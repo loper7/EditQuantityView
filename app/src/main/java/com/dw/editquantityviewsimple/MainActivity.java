@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
         editQuantityView.setCanInput(true);
         editQuantityView.setMax(500);
         editQuantityView.setMin(1);
-        editQuantityView.setQuantity(2);
         editQuantityView.setOnQuantityChangedListener(new EditQuantityView.OnQuantityChangedListener() {
             @Override
-            public void onQuantityChanged(int quantity) {
-                Log.d("loper7", "quantity:" + quantity);
+            public void onQuantityChanged(boolean isActive, int quantity) {
+                Log.d("loper7", "isActive:" + isActive + "\tquantity:" + quantity);
             }
 
+
         });
+        editQuantityView.setQuantity(2);
     }
 }

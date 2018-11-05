@@ -93,6 +93,8 @@ public class EditQuantityView extends LinearLayout {
     private int maxQuantity = INFINITY;
     //最小值
     private int minQuantity = 0;
+    //是否是主动更新
+    private boolean isActive = true;
 
     private OnQuantityChangedListener onQuantityChangedListener;
 
@@ -252,7 +254,8 @@ public class EditQuantityView extends LinearLayout {
                     }
                     quantity = Integer.parseInt(editQuantity.getText().toString());
                     if (onQuantityChangedListener != null)
-                        onQuantityChangedListener.onQuantityChanged(quantity);
+                        onQuantityChangedListener.onQuantityChanged(isActive, quantity);
+                    isActive = true;
                 } else {
                     quantity = minQuantity;
                     if (quantity > 0) {
@@ -357,6 +360,7 @@ public class EditQuantityView extends LinearLayout {
         this.quantity = quantity;
         if (editQuantity == null)
             return;
+        isActive = false;
         editQuantity.setText(String.valueOf(quantity));
     }
 
@@ -450,7 +454,7 @@ public class EditQuantityView extends LinearLayout {
 
 
     public interface OnQuantityChangedListener {
-        void onQuantityChanged(int quantity);
+        void onQuantityChanged(boolean isActive, int quantity);
     }
 
     public void setOnQuantityChangedListener(OnQuantityChangedListener onQuantityChangedListener) {
